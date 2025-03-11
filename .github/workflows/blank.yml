@@ -39,6 +39,4 @@ jobs:
     steps:
       - name: Run on failure
         run: |
-          echo "Job3_on_fail running at $(date)"
-          echo "Job1 status: ${{ jobs.job1.status }}"
-          echo "Job2 status: ${{ jobs.job2.status }}"
+          echo "Job3_on_fail running"
