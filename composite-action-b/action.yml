@@ -1,0 +1,11 @@
+name: "Use Environment Variable"
+description: "Reads a variable from a shared file"
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        set -a
+        source ${{ github.workspace }}/shared.env
+        set +a
+        echo "MY_VAR is: $MY_VAR"
+      shell: bash

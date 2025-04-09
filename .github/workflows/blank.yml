@@ -1,42 +1,15 @@
-# This is a basic workflow to help you get started with Actions
+name: Test Composite Actions
 
-name: CI
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [push]
 
 jobs:
-  job1:
+  demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Run first job
-        run: |
-          echo "Job1 starting"
-          sleep 2
-          echo "Job1 failing"
-          exit 1
+      - uses: actions/checkout@v3
 
-  job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run second job
-        run: |
-          echo "Job2 starting"
-          sleep 5
-          echo "Job2 completing"
+      - name: Run Composite Action A
+        uses: ./composite-action-a
 
-  job3_on_fail:
-    runs-on: ubuntu-latest
-    if: ${{ always() && (failure('job1') || failure('job2')) }}
-    steps:
-      - name: Run on failure
-        run: |
-          echo "Job3_on_fail running"
+      - name: Run Composite Action B
+        uses: ./composite-action-b

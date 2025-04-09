@@ -1,0 +1,7 @@
+name: "Set Environment Variable"
+description: "Writes a variable to a shared file"
+runs:
+  using: "composite"
+  steps:
+    - run: echo "MY_VAR=hello-from-action-a" >> ${{ github.workspace }}/shared.env
+      shell: bash
