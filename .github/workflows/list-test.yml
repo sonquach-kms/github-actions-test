@@ -1,0 +1,14 @@
+name: Loop with IFS
+on: [push]
+jobs:
+  loop-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Iterate over comma-separated list
+        shell: bash
+        run: |
+          list="abc,def"
+          IFS=,
+          for i in $list; do
+            echo "Item: $i"
+          done
