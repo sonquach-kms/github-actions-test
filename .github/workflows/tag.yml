@@ -1,3 +1,4 @@
+name: Get Previous Tag
 on:
   push:
     tags:
