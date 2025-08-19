@@ -1,0 +1,27 @@
+on:
+  push:
+    tags:
+      - '*'  # Matches all tags
+
+jobs:
+  get-previous-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # important to fetch all tags
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Get previous tag
+        id: previoustag
+        run: |
+          # Sort tags by version, get the second-to-last one
+          previous_tag=$(git tag --sort=-creatordate | sed -n '2p')
+          echo "previous_tag=$previous_tag" >> $GITHUB_ENV
+          echo "previous_tag=$previous_tag"
+
+      - name: Use previous tag
+        run: echo "Previous tag is $previous_tag"
