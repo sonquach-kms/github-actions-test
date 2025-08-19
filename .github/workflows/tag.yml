@@ -14,6 +14,8 @@ jobs:
       - name: Get previous tag
         id: previoustag
         run: |
+          # Fetch all tags
+          git fetch --tags
           # Sort tags by version, get the second-to-last one
           previous_tag=$(git tag -l --sort=-v:refname | sed -n '2p')
           echo "previous_tag=$previous_tag" >> $GITHUB_ENV
