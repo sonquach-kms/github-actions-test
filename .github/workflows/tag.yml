@@ -13,9 +13,6 @@ jobs:
         with:
           fetch-depth: 0   # important to fetch all tags
 
-      - name: Fetch all tags
-        run: git fetch --tags
-
       - name: Get previous tag
         id: previoustag
         run: |
