@@ -20,7 +20,7 @@ jobs:
         id: previoustag
         run: |
           # Sort tags by version, get the second-to-last one
-          previous_tag=$(git tag --sort=-creatordate | sed -n '2p')
+          previous_tag=$(git tag -l --sort=-v:refname | sed -n '2p')
           echo "previous_tag=$previous_tag" >> $GITHUB_ENV
           echo "previous_tag=$previous_tag"
 
